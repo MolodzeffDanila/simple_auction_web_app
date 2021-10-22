@@ -1,0 +1,12 @@
+doctype html
+html(lang="ru")
+    head
+        link(rel='stylesheet' href='static/demostyle.css')
+        title= "Вход"
+        script(src='jquery/jquery-3.6.0.min.js')
+    body
+        include menubar
+        h1 Дата аукциона: #{date}
+        h2 Количество участников: #{num_of_part}
+        h2 Количество лотов: #{num_of_lots}
+        h2 Количество торгов: #{num_of_att}

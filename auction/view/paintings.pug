@@ -1,0 +1,44 @@
+doctype html
+html(lang="ru")
+    head
+        link(rel='stylesheet' href='static/demostyle.css')
+        title= "Вход"
+        script(src='jquery/jquery-3.6.0.min.js')
+        script(src='../jquery/ui1.js')
+    body
+        .main
+            include menubar
+            .add-btn
+                button.btn(id="modal") Добавить картину
+            #setka
+                each i in paintings
+                    a.remove(href="/lot/" + i.id.toString())
+                        .painting.remove-item
+                            h2 Название картины: #{i.title}
+                            h3 Автор: #{i.author}
+                            h3 Год написания: #{i.year}
+                            p Цена: #{i.price} руб.
+                            img(src=i.img height="300px" width="auto")
+                    .remove-item
+                        button.btn(id=i.id style="margin-top: 90%; background-color:red" onclick=`delete_painting(${i.id})`) X
+        .overlay
+            .modal
+                form#addPaint
+                    label Название картины:
+                    br
+                    input(id="title")
+                    br
+                    label Имя автора:
+                    br
+                    input(id="author")
+                    br
+                    label Год написания:
+                    br
+                    input(id="year" type="number")
+                    br
+                    label Начальная цена
+                    br
+                    input(id="price" type='number')
+                    br
+                    button(type="submit") Добавить
+                    .x-btn

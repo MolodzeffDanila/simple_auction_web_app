@@ -1,0 +1,20 @@
+doctype html
+html(lang="ru")
+    head
+        link(rel='stylesheet' href='static/demostyle.css')
+        script(src='jquery/jquery-3.6.0.min.js')
+        script(src='../jquery/ui2.js')
+        title= "Вход"
+    body
+        include menubar
+        form#change_settings
+            .painting(align='center' style="width: 50%; margin-left: 25%")
+                label Изменение даты аукциона
+                br
+                input(id='input1' type='date')
+                br
+                label Изменение числа торгов
+                br
+                input(id="input2")
+                br
+                button.btn(type='submit' style="margin-top:10px") Изменить

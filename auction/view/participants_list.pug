@@ -1,0 +1,46 @@
+doctype html
+html(lang="ru")
+    head
+        link(rel='stylesheet' href='static/demostyle.css')
+        title= "Вход"
+        script(src='jquery/jquery-3.6.0.min.js')
+        script(src='../jquery/ui4.js')
+    body
+        .main#main
+            include menubar
+            .add-btn
+                button.btn(id="modal") Добавить участника аукциона
+            #setka
+                each i in participants
+                    .remove
+                        .painting.remove-item
+                            h2 Имя: #{i.name}
+                            h3 Бюджет: #{i.budget} руб.
+                            button.btn.redact(id='0'+i.id onclick=`save_id(${i.id})`) Редактирование
+                        .remove-item
+                            button.btn(id=i.id style="margin-top: 90%; background-color:red" onclick=`delete_part(${i.id})`) X
+        .overlay#add_participant
+            .modal
+                form#addP
+                    label Имя участника:
+                    br
+                    input(id="nameP")
+                    br
+                    label Бюджет:
+                    br
+                    input(id="budgetP")
+                    br
+                    button.btn(type="submit") Добавить участника
+                    .x-btn
+        .overlay#redact_participant
+            .modal
+                form#redact_participant_form
+                    label Имя участника:
+                    br
+                    input(id="new_name")
+                    br
+                    label Бюджет:
+                    br
+                    input(id="new_budget")
+                    button.btn(onclick='redact_part()') Редактировать
+                    .x-btn

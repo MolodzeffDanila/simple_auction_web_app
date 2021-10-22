@@ -1,0 +1,50 @@
+doctype html
+html(lang="ru")
+    head
+        link(rel='stylesheet' href='/static/demostyle.css')
+        title= "Лот"
+        script(src='../jquery/jquery-3.6.0.min.js')
+        script(src='../jquery/ui3.js')
+    body
+        .main
+            include menubar
+            .painting
+                h1 Название картины: #{lot.title}
+                h2 Автор: #{lot.author}
+                h3 Год написания: #{lot.year}
+                h3 Цена: #{lot.price} руб.
+                img(src='../' + lot.img height="auto" width="65%")
+                br
+                .container
+                    button.btn(id="modal" style="margin-top:15px") Редактирование лота
+                    button.btn(id="modal2" style="margin-top:15px") Изменение изображения
+        .overlay#redact_text
+            .modal
+                form#redact(method="POST" action='/redact_lot/' + lot.id)
+                    label Название картины:
+                    br
+                    input(name="title" value=lot.title)
+                    br
+                    label Имя автора:
+                    br
+                    input(name="author" value=lot.author)
+                    br
+                    label Год написания:
+                    br
+                    input(name="year" type="number" value=lot.year)
+                    br
+                    label Начальная цена:
+                    br
+                    input(name="price" type='number' value=lot.price)
+                    br
+                    button(type="submit") Сохранить изменения
+                    .x-btn
+        .overlay#redact_image
+            .modal
+                form#redact_image_form(method="POST" action='/redact_img/' + lot.id enctype="multipart/form-data")
+                    label Выберите изображение
+                    br
+                    input(type="file" name="file_image")
+                    br
+                    button(type="submit") Сохранить изменения
+                    .x-btn
